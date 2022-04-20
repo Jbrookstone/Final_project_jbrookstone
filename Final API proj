@@ -1,0 +1,24 @@
+import requests
+import json
+'''
+def get_tigers_weight_data(player):
+    base_url = "http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'&active_sw='Y'&name_part=" + "'" + player + "'"
+    res = requests.get(base_url)
+    data = json.loads(res.text)
+    return data['search_player_all']['queryResults']['row']
+    
+data = (get_tigers_weight_data('jason foley'))
+'''
+def get_tigers_players():
+    base_url = "http://lookup-service-prod.mlb.com/json/named.roster_40.bam?team_id='116'"
+    res = requests.get(base_url)
+    data = json.loads(res.text)
+    new_lst = data['roster_40']['queryResults']['row']
+    weight_list = []
+    for item in new_lst:
+       weight_list.append(item['weight'])
+    return weight_list
+tigers_rosters = get_tigers_players()
+print(tigers_rosters)
+
+ 
